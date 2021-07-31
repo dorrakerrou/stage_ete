@@ -1,8 +1,12 @@
 package com.back.stage.Entities;
 
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @DiscriminatorColumn(name = "PERS")
@@ -15,11 +19,27 @@ public class Personne implements Serializable {
     private String nom;
     private String prenom;
     private String email;
+    @NotNull
     private String identifiant;
     private String cin;
     private String numTel;
 
+    @NotNull
+    private String Password ;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     public Personne() {
+    }
+
+    public Personne(String email, String identifiant, String password) {
+        this.email = email;
+        this.identifiant = identifiant;
+        Password = password;
     }
 
     public Personne(Long ID, String nom, String prenom, String email, String identifiant, String cin, String numTel) {
@@ -86,5 +106,21 @@ public class Personne implements Serializable {
 
     public void setNumTel(String numTel) {
         this.numTel = numTel;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
