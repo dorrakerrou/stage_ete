@@ -2,22 +2,13 @@ package com.back.stage.Controllers;
 
 import com.back.stage.Repositories.PersonneRepository;
 import com.back.stage.Repositories.RoleRepository;
-import com.back.stage.Security.Services.UserDetailsImpl;
 import com.back.stage.Security.jwt.JwtUtils;
-import com.back.stage.dto.JwtResponse;
-import com.back.stage.dto.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -40,11 +31,11 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
-
+/*
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequest loginRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(
+       Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);

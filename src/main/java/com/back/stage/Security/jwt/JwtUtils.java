@@ -1,26 +1,16 @@
 package com.back.stage.Security.jwt;
 
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.back.stage.Security.Services.UserDetailsImpl;
-import jdk.jshell.spi.ExecutionControl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 
 @Component
 public class JwtUtils implements Serializable {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+   /* private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${bezkoder.app.jwtSecret}")
     private String jwtSecret;
@@ -61,5 +51,5 @@ public class JwtUtils implements Serializable {
         }
 
         return false;
-    }
+    }*/
 }
