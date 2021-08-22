@@ -16,8 +16,7 @@ public class Enseignant extends Personne implements Serializable {
     @OneToMany(mappedBy = "enseignants")
     private List<Suivi> suivi ;
 
-    @OneToOne
-    private Validation validation;
+
 
     public Enseignant(float salaire, String module_enseigne) {
         this.salaire = salaire;

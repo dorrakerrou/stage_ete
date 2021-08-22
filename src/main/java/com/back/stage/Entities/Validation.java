@@ -21,7 +21,7 @@ public class Validation implements Serializable {
     private boolean validerF;
 
     @ManyToOne
-    @JoinColumn(name = "IDet",   nullable = false)
+    @JoinColumn(name = "IDet")
     private Etudiant etudiantsV ;
 
     @OneToOne

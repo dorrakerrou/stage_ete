@@ -5,8 +5,6 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @DiscriminatorColumn(name = "PERS")
@@ -27,11 +25,7 @@ public class Personne implements Serializable {
     @NotNull
     private String Password ;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+
 
     public Personne() {
     }
@@ -116,11 +110,5 @@ public class Personne implements Serializable {
         Password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

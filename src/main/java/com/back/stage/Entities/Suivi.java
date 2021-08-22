@@ -20,12 +20,12 @@ public class Suivi implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name = "IDet",   nullable = false)
+    @JoinColumn(name = "IDet")
     private Etudiant etudiants ;
 
 
     @ManyToOne
-    @JoinColumn(name = "IDen",   nullable = false)
+    @JoinColumn(name = "IDen")
     private Enseignant enseignants ;
 
     public Suivi(int iDs, String nom_equipe, String remarque, String taches, boolean valider) {
