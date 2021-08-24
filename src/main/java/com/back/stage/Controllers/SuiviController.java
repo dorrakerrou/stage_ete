@@ -24,11 +24,11 @@ public class SuiviController {
 
     }
 
-    @PostMapping("/addsuivi")
+    @PostMapping("/addsuiviEt/{idEt}")
     @ResponseBody
-    public ResponseEntity<?> Add(@RequestBody Suivi s){
-        Suivi sub = SuiviService.add(s);
-        return new ResponseEntity<>( " Suivi added. ",  HttpStatus.OK);
+    public ResponseEntity<?> Add(@RequestParam(value = "taches",  required = false)  String taches,@RequestParam(value = "nom_equipe",  required = false)  String nom_equipe ,@PathVariable long idEt){
+        Suivi sub = SuiviService.addEt(taches,nom_equipe,idEt);
+        return new ResponseEntity<>( " Suivi added by etudiant. ",  HttpStatus.OK);
 
     }
 
@@ -39,5 +39,17 @@ public class SuiviController {
         return SuiviService.modify(su);
     }
 
+    @PostMapping("/addsuiviEn/{idEn}")
+@ResponseBody
+    public ResponseEntity<?> AddEn(@RequestParam(value = "Remarque",  required = false)  String Remarque,@RequestParam (value="valider", required = false) boolean valider, @PathVariable long idEn){
+        Suivi sub = SuiviService.AddEn(Remarque,valider,idEn);
+        return new ResponseEntity<>( " Suivi added by enseignant. ",  HttpStatus.OK);
+    }
+
+    @GetMapping("/getSuiviforEn/{id}")
+    public ResponseEntity<?> getSuiviEn(@PathVariable  long id){
+
+        return new ResponseEntity<>( SuiviService.getSuivForEn(id), HttpStatus.OK);
+    }
 
 }

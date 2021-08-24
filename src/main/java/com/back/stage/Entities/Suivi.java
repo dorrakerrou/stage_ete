@@ -78,4 +78,20 @@ public class Suivi implements Serializable {
     public void setValider(boolean valider) {
         this.valider = valider;
     }
+
+    public Enseignant getEnseignants() {
+        return enseignants;
+    }
+
+    public void setEnseignants(Enseignant enseignants) {
+        this.enseignants = enseignants;
+    }
+
+    public Etudiant getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(Etudiant etudiants) {
+        this.etudiants = etudiants;
+    }
 }

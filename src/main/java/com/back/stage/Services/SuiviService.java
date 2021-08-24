@@ -1,11 +1,16 @@
 package com.back.stage.Services;
 
+import com.back.stage.Entities.Enseignant;
+import com.back.stage.Entities.Etudiant;
 import com.back.stage.Entities.Suivi;
+import com.back.stage.Repositories.EnseignantRepository;
+import com.back.stage.Repositories.EtudiantRepository;
 import com.back.stage.Repositories.SuiviRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -13,6 +18,12 @@ public class SuiviService implements ISuivi{
 
     @Autowired
     SuiviRepository SuiviRep ;
+
+    @Autowired
+    EnseignantRepository EnRep;
+
+    @Autowired
+    EtudiantRepository EtRep;
 
 
     @Override
@@ -26,9 +37,15 @@ public class SuiviService implements ISuivi{
     }
 
     @Override
-    public Suivi add(Suivi s) {
+    public Suivi addEt(String nom_equipe, String taches, long idEt) {
+        Suivi s = new Suivi();
+        s.setTaches(taches);
+        s.setNom_equipe(nom_equipe);
+        Etudiant et = EtRep.findById(idEt).get();
+        s.setEtudiants(et);
         return SuiviRep.save(s);
     }
+
 
     @Override
     public Suivi modify(Suivi s) {
@@ -37,5 +54,21 @@ public class SuiviService implements ISuivi{
         sui.setTaches(s.getTaches());
 
         return SuiviRep.save(sui);
+    }
+
+    @Override
+    public Suivi AddEn(String Remarque, boolean valider, long idEn) {
+        Suivi S = new Suivi();
+        S.setRemarque(Remarque);
+        S.setValider(valider);
+        Enseignant en = EnRep.findById(idEn).get();
+        S.setEnseignants(en);
+
+        return SuiviRep.save(S);
+    }
+
+    @Override
+    public Optional<Suivi> getSuivForEn(long id) {
+        return SuiviRep.findById((int) id);
     }
 }
