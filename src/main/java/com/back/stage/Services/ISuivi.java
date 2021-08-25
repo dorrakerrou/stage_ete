@@ -12,4 +12,5 @@ public interface ISuivi {
     Suivi modify(Suivi s);
     Suivi AddEn(String Remarque, boolean valider, long idEn);
     Optional<Suivi> getSuivForEn(long id);
+    Suivi AnotherOne(int id,String Remarque, boolean valider, long idEn);
 }

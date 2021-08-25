@@ -56,6 +56,7 @@ public class SuiviService implements ISuivi{
         return SuiviRep.save(sui);
     }
 
+
     @Override
     public Suivi AddEn(String Remarque, boolean valider, long idEn) {
         Suivi S = new Suivi();
@@ -70,5 +71,16 @@ public class SuiviService implements ISuivi{
     @Override
     public Optional<Suivi> getSuivForEn(long id) {
         return SuiviRep.findById((int) id);
+    }
+
+    @Override
+    public Suivi AnotherOne(int id, String remarque, boolean valider, long idEn) {
+       Suivi su =  SuiviRep.findById(id).orElse(null);
+       su.setValider(valider);
+       su.setRemarque(remarque);
+        Enseignant en = EnRep.findById(idEn).get();
+       su.setEnseignants(en);
+
+        return SuiviRep.save(su);
     }
 }

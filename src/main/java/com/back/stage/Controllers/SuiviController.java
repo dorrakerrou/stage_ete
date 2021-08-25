@@ -26,8 +26,8 @@ public class SuiviController {
 
     @PostMapping("/addsuiviEt/{idEt}")
     @ResponseBody
-    public ResponseEntity<?> Add(@RequestParam(value = "taches",  required = false)  String taches,@RequestParam(value = "nom_equipe",  required = false)  String nom_equipe ,@PathVariable long idEt){
-        Suivi sub = SuiviService.addEt(taches,nom_equipe,idEt);
+    public ResponseEntity<?> Add(@RequestBody Suivi s ,@PathVariable long idEt){
+        Suivi sub = SuiviService.addEt(s.getTaches(),s.getNom_equipe(),idEt);
         return new ResponseEntity<>( " Suivi added by etudiant. ",  HttpStatus.OK);
 
     }
@@ -39,10 +39,18 @@ public class SuiviController {
         return SuiviService.modify(su);
     }
 
+
+    @PostMapping("/another/{idEn}")
+    @ResponseBody
+    public ResponseEntity<?>  AddEnAnotherOne(@RequestBody Suivi s, @PathVariable long idEn){
+        Suivi su =  SuiviService.AnotherOne(s.getIDs(),s.getRemarque(),s.isValider(), idEn);
+        return new ResponseEntity<>( " Suivi added by enseignant. again ",  HttpStatus.OK);
+    }
+
     @PostMapping("/addsuiviEn/{idEn}")
 @ResponseBody
-    public ResponseEntity<?> AddEn(@RequestParam(value = "Remarque",  required = false)  String Remarque,@RequestParam (value="valider", required = false) boolean valider, @PathVariable long idEn){
-        Suivi sub = SuiviService.AddEn(Remarque,valider,idEn);
+    public ResponseEntity<?> AddEn(@RequestBody  Suivi s, @PathVariable long idEn){
+        Suivi su = SuiviService.AddEn(s.getRemarque(),s.isValider(),idEn);
         return new ResponseEntity<>( " Suivi added by enseignant. ",  HttpStatus.OK);
     }
 

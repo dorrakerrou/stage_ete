@@ -87,4 +87,20 @@ public class Validation implements Serializable {
     public void setValiderF(boolean validerF) {
         this.validerF = validerF;
     }
+
+    public Etudiant getEtudiantsV() {
+        return etudiantsV;
+    }
+
+    public void setEtudiantsV(Etudiant etudiantsV) {
+        this.etudiantsV = etudiantsV;
+    }
+
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
 }
